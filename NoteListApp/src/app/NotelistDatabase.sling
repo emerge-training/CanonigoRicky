@@ -46,8 +46,10 @@ func updateTables
 {
     var notelist = SQLTableInfo.forName(NOTELIST)
     notelist.addStringKeyColumn("id")
-    notelist.addStringColumn("name")
-    notelist.addStringColumn("description")
+    notelist.addStringColumn("noteTitle")
+    notelist.addStringColumn("content")
+    notelist.addStringColumn("timeStampAdded")
+    notelist.addStringColumn("timeStampLastUpdated")
     updateTable(notelist)
 }
 

@@ -48,6 +48,8 @@ func updateTables
     task.addStringKeyColumn("id")
     task.addStringColumn("name")
     task.addStringColumn("description")
+    task.addLongColumn("timeStampAdded")
+    task.addLongColumn("timeStampLastUpdated")
     updateTable(task)
 }
 
@@ -76,7 +78,7 @@ func deleteTask(id as string) as bool
     return db.executeSync(db.prepareDeleteStatementSync(TASK, criteria.toDynamicMap()))
 }
 
-func geTask as DynamicMap
+func getTasks as DynamicMap
 {
     var v = new vector<Task>
     var it = assert db.querySync(db.prepareQueryAllStatementSync(TASK)):
