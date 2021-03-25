@@ -1,4 +1,6 @@
 import jk.widget.common
+import jk.widget.form
+import jk.widget.datagrid
 
 class is TitledWidget #widget:
 
@@ -14,6 +16,17 @@ ui LayerWidget
             }
         }
     }
+    
+    VerticalScrollerWidget{
+        scrollBarDisabled = true
+        LayerWithBackgroundColorWidget cont{
+            color = Color.white()
+            VerticalBoxWidget hbwForm{
+                margin = context.getHeightValue("10mm")
+                spacing = context.getHeightValue("10mm")
+            }
+        }
+    }
 }
 
 func initializeWidget override
@@ -22,10 +35,17 @@ func initializeWidget override
     APIClient.getInstance().getTasks(func(response as DynamicMap){
         var data = assert response.getDynamicMap("data")
         var records = data.getDynamicVector("records")
+        // var FormDecOne =FormDeclaration.forDescription(context,"description")
+        // FormDecOne.addTextInput("TaskName","Name ","Task Name")
+        // var formSample = FormWidget.forDeclaration(context, FormDecOne)
+        hbwForm.addWidget(TextInputWidget.forType(context,1,"Task Name"))
+        hbwForm.addWidget(TextInputWidget.forType(context,2,"Task Description"))
+        hbwForm.addWidget(TextButtonWidget.forText(context,"Add Task"))
         if  not records || records.getSize() < 1{
             list.addWidget(AlignWidget.forWidget(context, LabelWidget.forText(context, "No record")),1.0)
         }
         else{
+            var dgrw = DataGridWidget
             foreach record as DynamicMap in records.toVector(){
                 var task = record.getString("name") .. " - " .. record.getString("description")
                 var lblTask = LabelWidget.forText(context, task)
