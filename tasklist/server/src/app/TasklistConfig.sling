@@ -6,9 +6,7 @@ class:
 func getAllowedOrigins as array
 {
     return [
-        "http://localhost:8080",
-        "http://localhost:8081",
-        "http://ec2-54-169-104-179.ap-southeast-1.compute.amazonaws.com:30023"
+        "http://ec2-54-169-156-128.ap-southeast-1.compute.amazonaws.com:30007"
     ]
 }
 

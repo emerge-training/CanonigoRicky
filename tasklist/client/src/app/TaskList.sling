@@ -45,7 +45,6 @@ func initializeWidget override
             list.addWidget(AlignWidget.forWidget(context, LabelWidget.forText(context, "No record")),1.0)
         }
         else{
-            var dgrw = DataGridWidget
             foreach record as DynamicMap in records.toVector(){
                 var task = record.getString("name") .. " - " .. record.getString("description")
                 var lblTask = LabelWidget.forText(context, task)
