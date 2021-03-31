@@ -1,0 +1,33 @@
+import jk.log
+import jk.sqlite
+import jk.mysql
+import jk.sql
+import jk.env
+import jk.time
+
+class is HrmsDatabase:
+
+const EMPLOYEE_LOGS = "employee_logs"
+
+model Employment
+{
+    attId as string
+    empId as string
+    empLogIn as string
+    empLogOut as string
+    createdAt as long
+    updatedAt as long
+}
+
+func createTable as SQLTableInfo
+{
+    var employee_logs = SQLTableInfo.forName(EMPLOYEE_LOGS)
+    employee_logs.addStringKeyColumn("attId")
+    employee_logs.addStringColumn("empId")
+    employee_logs.addStringColumn("empLogIn")
+    employee_logs.addStringColumn("empLogOut")
+    employee_logs.addStringColumn("empJobTitle")
+    employee_logs.addLongColumn("createdAt")
+    employee_logs.addLongColumn("updatedAt")
+    return (employee_logs)
+}
